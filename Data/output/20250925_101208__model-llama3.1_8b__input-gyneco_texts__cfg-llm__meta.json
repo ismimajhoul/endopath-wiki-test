@@ -1,0 +1,16 @@
+{
+  "timestamp": "20250925_101208",
+  "model": "llama3.1:8b",
+  "options": {
+    "temperature": 0.2,
+    "top_p": 0.9,
+    "num_ctx": 4096,
+    "num_predict": 256
+  },
+  "input_path": "data/input/gyneco_texts.csv",
+  "input_rows": 5,
+  "prompt_path": "experiments/llm_ollama/prompts/symptoms.prompt.txt",
+  "task": "Predire symptomes",
+  "dataset_name": "gyneco_texts",
+  "output_csv": "data/output/20250925_101208__model-llama3.1_8b__input-gyneco_texts__cfg-llm.csv"
+}

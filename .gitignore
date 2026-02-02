@@ -1,0 +1,10 @@
+*.yaml
+*.csv
+*.xlsx
+lightning_logs
+logs
+*.pyc
+
+# keep LLM experiments
+!experiments/llm_ollama/
+!experiments/llm_ollama/**

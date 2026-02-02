@@ -1,0 +1,16 @@
+{
+  "timestamp": "20250925_095130",
+  "model": "deepseek-r1:7b",
+  "options": {
+    "temperature": 0.2,
+    "top_p": 0.9,
+    "num_ctx": 4096,
+    "num_predict": 256
+  },
+  "input_path": "data/input/gyneco_texts.csv",
+  "input_rows": 5,
+  "prompt_path": "experiments/llm_ollama/prompts/symptoms.prompt.txt",
+  "task": "Predire symptomes",
+  "dataset_name": "gyneco_texts",
+  "output_csv": "data/output/20250925_095130__model-deepseek-r1_7b__input-gyneco_texts__cfg-llm.csv"
+}

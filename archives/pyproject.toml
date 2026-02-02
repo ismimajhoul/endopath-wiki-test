@@ -1,0 +1,47 @@
+[tool.poetry]
+name = "endopaths"
+version = "0.1.0"
+description = "Endopaths"
+authors = ["Nicolai Wolpert <nicolai.wolpert@capgemini.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+ipykernel = "^6.29.4"
+jupyter = "^1.0.0"
+pandas = "^2.2.2"
+matplotlib = "^3.9.0"
+seaborn = "^0.13.2"
+xgboost = "^2.0.3"
+scikit-optimize = "^0.10.2"
+dynatrace-metric-utils = "^0.2.1"
+openpyxl = "^3.1.4"
+prince = "0.4.6"
+nltk = "^3.8.1"
+sklearn-genetic = {git = "https://github.com/manuel-calzolari/sklearn-genetic.git", rev = "0.6.0"}
+scikit-learn = "^1.5.0"
+keras = "^3.3.3"
+# Manual installation: git clone https://github.com/TeamHG-Memex/eli5.git
+numpy = "1.26.4"
+# Installed using pip:
+tensorflow = "2.16.1"          
+Unidecode = "1.3.8"
+pyspellchecker = "0.8.1"
+python-Levenshtein = "0.25.1"
+scikit-multilearn = "0.2.0"
+iterative-stratification = "0.1.7"
+torch = "2.3.1"
+pytorch_lightning = "2.3.2"
+transformers = "4.42.3"
+datasets = "2.20.0"
+plotly = "5.22.0"
+sentencepiece = "0.2.0"
+nlstruct = "0.2.0"
+gliner = "0.2.7"
+wordcloud = "1.9.3"
+nlpaug = "1.1.11"
+fuzzywuzzy = "0.18.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
