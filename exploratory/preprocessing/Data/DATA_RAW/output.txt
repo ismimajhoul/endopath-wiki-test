@@ -1,0 +1,408 @@
+ python3 .\extract_text_and_vocab_from_dossier_gyneco.py
+[INFO] Tentative lecture Excel protégé : C:\Users\user\Documents\endopath\exploratory\preprocessing\Data\DATA_RAW\dossier-gyneco-23-03-2022.xlsx
+[INFO] Lecture password : C:\Users\user\Documents\endopath\exploratory\preprocessing\Data\PASSWORD_1.txt
+[INFO] Déchiffrement Excel protégé : C:\Users\user\Documents\endopath\exploratory\preprocessing\Data\DATA_RAW\dossier-gyneco-23-03-2022.xlsx
+C:\Users\user\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.7_qbz5n2kfra8p0\LocalCache\local-packages\Python37\site-packages\msoffcrypto\method\ecma376_agile.py:8: CryptographyDeprecationWarning: Python 3.7 is no longer supported by the Python core team and support for it is deprecated in cryptography. The next release of cryptography will remove support for Python 3.7.
+  from cryptography.hazmat.backends import default_backend
+[INFO] Lecture du contenu déchiffré dans pandas...
+[INFO] Fichier chargé : 2455 lignes, 1687 colonnes
+[INFO] Colonne identifiant patiente détectée : #IPP
+[INFO] Colonnes textuelles détectées (392) :
+   - Sexe
+   - Gynécologie > Consultation>Date consultation
+   - Gynécologie > Consultation>Consultation
+   - Gynécologie > Consultation>Intervenant txt
+   - Gynécologie > Consultation>Intervenant
+   - Gynécologie > Consultation>Motif de consultation
+   - Gynécologie > Consultation>Evt important
+   - Gynécologie > Consultation>Consultation d annonce
+   - Gynécologie > Consultation>Ordonnances / Id fiche
+   - Gynécologie > Consultation>Ordonnances / Resume short
+   - Gynécologie > Consultation>Ordonnances / Date ordo
+   - Gynécologie > Consultation>Ordonnances / Type
+   - Gynécologie > Ordonnance>Consigne ordonnance
+   - Gynécologie > Ordonnance>Prescripteur
+   - Gynécologie > Ordonnance>Prescripteur autre
+   - Gynécologie > Ordonnance>Type ordonnance
+   - Gynécologie > Ordonnance>Autre type ordonnance
+   - Gynécologie > Ordonnance>Date.1
+   - Gynécologie > Ordonnance>Prescription (1)
+   - Gynécologie > Ordonnance>OAR (1)
+   - Gynécologie > Ordonnance>QSP (1)
+   - Gynécologie > Ordonnance>OAR (2)
+   - Gynécologie > Ordonnance>Nombre plaies
+   - Gynécologie > Ordonnance>Affichage pharmacie
+   - Gynécologie > Ordonnance>Stupefiants ald
+   - Gynécologie > Ordonnance>Stupefiants non ald
+   - Gynécologie > Ordonnance>Date taille
+   - Gynécologie > Ordonnance>Date poids
+   - Gynécologie > Ordonnance>Pansements / Laver
+   - Gynécologie > Ordonnance>Pansements / Pansement
+   - Gynécologie > Ordonnance>Pansements / Taille pansement
+   - Gynécologie > Ordonnance>Incl stupefiants / Nomen ald
+   - Gynécologie > Ordonnance>Incl stupefiants / Prescription stup txt
+   - Gynécologie > Ordonnance>Incl stupefiants / pregabaline
+   - Gynécologie > Ordonnance>Incl stupefiants / Fractionnement oui duree txt
+   - Gynécologie > Ordonnance>Incl stupefiants / Duree traitement
+   - Gynécologie > Mots>Mot
+   - Gynécologie > Mots>Inclusion mots / Date mot
+   - Gynécologie > Mots>Inclusion mots / Intervenant id
+   - Gynécologie > Mots>Inclusion mots / Intervenant txt
+   - Gynécologie > Mots>Inclusion mots / Intervenant
+   - Gynécologie > Mots>Inclusion mots / Mot
+   - Gynécologie > Mots>Inclusion mots / Type mot
+   - Gynécologie > Mots>Inclusion mots / Createur id
+   - Gynécologie > Mots>Inclusion mots affichage / Date mot
+   - Gynécologie > Mots>Inclusion mots affichage / Intervenant id
+   - Gynécologie > Mots>Inclusion mots affichage / Intervenant txt
+   - Gynécologie > Mots>Inclusion mots affichage / Intervenant
+   - Gynécologie > Mots>Inclusion mots affichage / Mot
+   - Gynécologie > Mots>Inclusion mots affichage / Type mot
+   - Gynécologie > Mots>Inclusion mots affichage / Fiche id
+   - Gynécologie > Mots>Inclusion mots affichage / Createur id
+   - Gynécologie > Programmation opératoire>Date courante
+   - Gynécologie > Programmation opératoire>Sp
+   - Gynécologie > Programmation opératoire>Type hospitalisation
+   - Gynécologie > Programmation opératoire>Pathologie hierarchique hierarchie complete 1
+   - Gynécologie > Programmation opératoire>Pathologie hierarchique hierarchie complete 2
+   - Gynécologie > Programmation opératoire>Pathologie hierarchique
+   - Gynécologie > Programmation opératoire>Pathologie hierarchique.1
+   - Gynécologie > Programmation opératoire>Operateur
+   - Gynécologie > Programmation opératoire>Opérateur txt
+   - Gynécologie > Programmation opératoire>Operateur.1
+   - Gynécologie > Programmation opératoire>Opérateur autre
+   - Gynécologie > Programmation opératoire>Délégué
+   - Gynécologie > Programmation opératoire>Supérieur inférieur 21j
+   - Gynécologie > Programmation opératoire>Date prévue
+   - Gynécologie > Programmation opératoire>Pathologie txt
+   - Gynécologie > Programmation opératoire>Anesthesie
+   - Gynécologie > Programmation opératoire>Anesthesie txt
+   - Gynécologie > Programmation opératoire>Chir mammaire ovarienne
+   - Gynécologie > Programmation opératoire>Informee diag
+   - Gynécologie > Programmation opératoire>Informee risque
+   - Gynécologie > Programmation opératoire>Chambre implantable
+   - Gynécologie > Programmation opératoire>Maison
+   - Gynécologie > Programmation opératoire>Allergie autre txt
+   - Gynécologie > CR opératoire (Fiche)>Date opération
+   - Gynécologie > CR opératoire (Fiche)>Titre intervention
+   - Gynécologie > CR opératoire (Fiche)>Durée opératoire
+   - Gynécologie > CR opératoire (Fiche)>Type anesthésie
+   - Gynécologie > CR opératoire (Fiche)>Indications
+   - Gynécologie > CR opératoire (Fiche)>Compte-rendu intervention
+   - Gynécologie > CR opératoire (Fiche)>Suites operatoires
+   - Gynécologie > CR opératoire (Fiche)>Consignes previsions sortie texte type
+   - Gynécologie > CR opératoire (Fiche)>Autre type anesthésie
+   - Gynécologie > CR opératoire (Fiche)>Tracabilité
+   - Gynécologie > CR opératoire (Fiche)>Pertes sanguines
+   - Gynécologie > CR opératoire (Fiche)>Geste ids
+   - Gynécologie > CR opératoire (Fiche)>Identification du matériel radiogène
+   - Gynécologie > CR opératoire (Fiche)>Dose de rayons
+   - Gynécologie > CR opératoire (Fiche)>Temps scopie unite
+   - Gynécologie > CR opératoire (Fiche)>Region anatomique
+   - Gynécologie > CR opératoire (Fiche)>Compte textiles
+   - Gynécologie > CR opératoire (Fiche)>Opérateurs / Opérateur
+   - Gynécologie > CR opératoire (Fiche)>Opérateurs / Operateur.1
+   - Gynécologie > CR opératoire (Fiche)>Aides / Aide.2
+   - Gynécologie > CR opératoire (Fiche)>Ibodes / Ibode.1
+   - Gynécologie > CR opératoire (Fiche)>Ibodes / Ibode.2
+   - Gynécologie > CR opératoire (Fiche)>Anesthésistes / Anesthesiste.1
+   - Gynécologie > CR opératoire (Fiche)>Anesthésistes / Anesthesiste.2
+   - Gynécologie > CR opératoire (Fiche)>Cmb soignants / Soignant int
+   - Gynécologie > CR opératoire (Fiche)>Cmb soignants / Soignant txt
+   - Gynécologie > Hospitalisation>Num hospit
+   - Gynécologie > Hospitalisation>Date entree
+   - Gynécologie > Hospitalisation>Date sortie
+   - Gynécologie > Hospitalisation>Motif
+   - Gynécologie > Hospitalisation>Conclusion
+   - Gynécologie > Hospitalisation>Lettre hospit id
+   - Gynécologie > Hospitalisation>Inclusion mots / Date mot
+   - Gynécologie > Hospitalisation>Inclusion mots / Intervenant id
+   - Gynécologie > Hospitalisation>Inclusion mots / Intervenant txt
+   - Gynécologie > Hospitalisation>Inclusion mots / Mot
+   - Gynécologie > Hospitalisation>Inclusion mots / Type mot
+   - Gynécologie > Hospitalisation>Inclusion mots / Createur id
+   - Gynécologie > Fiche d'hospitalisation ACHA>Sous fiche affichee
+   - Gynécologie > Fiche d'hospitalisation ACHA>Etat fiches NIHSS supprimees
+   - Gynécologie > Fiche d'hospitalisation ACHA>Id vue
+   - Gynécologie > Fiche d'hospitalisation ACHA>Bypass prescription sortie
+   - Gynécologie > Fiche d'hospitalisation ACHA>Vue com dossier asur existant
+   - Gynécologie > Fiche d'hospitalisation ACHA>Vue com date sortie asur
+   - Gynécologie > Fiche d'hospitalisation ACHA>Liste specialites
+   - Gynécologie > Fiche d'hospitalisation ACHA>Specialite fiche intro
+   - Gynécologie > Fiche d'hospitalisation ACHA>Rmm
+   - Gynécologie > Fiche d'hospitalisation ACHA>Synthese
+   - Gynécologie > Fiche d'hospitalisation ACHA>Intervention selectionnee id
+   - Gynécologie > Fiche d'hospitalisation ACHA>Modification traitement patient
+   - Gynécologie > Fiche d'hospitalisation ACHA>Traitement admission SSR
+   - Gynécologie > Fiche d'hospitalisation ACHA>Pathologie cocher decocher suivis
+   - Gynécologie > Fiche d'hospitalisation ACHA>Liste pathologies txt
+   - Gynécologie > Fiche d'hospitalisation ACHA>Texte type signes fonctionnels état général
+   - Gynécologie > Fiche d'hospitalisation ACHA>Asthénie
+   - Gynécologie > Fiche d'hospitalisation ACHA>Mois (mois)
+   - Gynécologie > Fiche d'hospitalisation ACHA>Ulcération buccale
+   - Gynécologie > Fiche d'hospitalisation ACHA>Declare mesure nomen
+   - Gynécologie > Fiche d'hospitalisation ACHA>Declare mesure chumlea nomen
+   - Gynécologie > Fiche d'hospitalisation ACHA>Texte type signes fonctionnels sensoriels
+   - Gynécologie > Fiche d'hospitalisation ACHA>Droite
+   - Gynécologie > Fiche d'hospitalisation ACHA>Gauche.2
+   - Gynécologie > Fiche d'hospitalisation ACHA>Confusion
+   - Gynécologie > Fiche d'hospitalisation ACHA>Pensées désorganisées
+   - Gynécologie > Fiche d'hospitalisation ACHA>Désorientation temporelle
+   - Gynécologie > Fiche d'hospitalisation ACHA>O2
+   - Gynécologie > Fiche d'hospitalisation ACHA>Signes fonctionnels abdo saisis dans la fiche
+   - Gynécologie > Fiche d'hospitalisation ACHA>Examen admission caryotype date
+   - Gynécologie > Fiche d'hospitalisation ACHA>Examen admission biologie moleculaire date
+   - Gynécologie > Fiche d'hospitalisation ACHA>Examen admission biologie moleculaire
+   - Gynécologie > Fiche d'hospitalisation ACHA>Examen admission score comorbidite
+   - Gynécologie > Fiche d'hospitalisation ACHA>Examen admission RP
+   - Gynécologie > Fiche d'hospitalisation ACHA>Examen admission EFR date
+   - Gynécologie > Fiche d'hospitalisation ACHA>Examen admission EFR
+   - Gynécologie > Fiche d'hospitalisation ACHA>Examen admission ECG date
+   - Gynécologie > Fiche d'hospitalisation ACHA>Examen admission echographie cardiaque
+   - Gynécologie > Fiche d'hospitalisation ACHA>Examen admission echographie cardiaque date
+   - Gynécologie > Fiche d'hospitalisation ACHA>Examen admission catheters
+   - Gynécologie > Fiche d'hospitalisation ACHA>Vue Médecine - Médecin traitant
+   - Gynécologie > Fiche d'hospitalisation ACHA>Habitudes toxiques choix
+   - Gynécologie > Fiche d'hospitalisation ACHA>Erreur recup facteurs de risques
+   - Gynécologie > Fiche d'hospitalisation ACHA>Date CRH
+   - Gynécologie > Fiche d'hospitalisation ACHA>Organe coeur
+   - Gynécologie > Fiche d'hospitalisation ACHA>Evolution renal date dialyse post greffe
+   - Gynécologie > Fiche d'hospitalisation ACHA>Evolution pancreas arret insuline
+   - Gynécologie > Fiche d'hospitalisation ACHA>Evolution complication immuno detail
+   - Gynécologie > Fiche d'hospitalisation ACHA>Evolution complication chir
+   - Gynécologie > Fiche d'hospitalisation ACHA>Evolution complication bacterienne detail
+   - Gynécologie > Fiche d'hospitalisation ACHA>Evolution complication fongique
+   - Gynécologie > Fiche d'hospitalisation ACHA>Date dernière génération
+   - Gynécologie > Fiche d'hospitalisation ACHA>Date de génération du document de sortie
+   - Gynécologie > Fiche d'hospitalisation ACHA>Date de génération du document de sortie valant CRH
+   - Gynécologie > Fiche d'hospitalisation ACHA>Date de génération du CRH
+   - Gynécologie > Fiche d'hospitalisation ACHA>IdDocSortie
+   - Gynécologie > Fiche d'hospitalisation ACHA>Date entrée
+   - Gynécologie > Fiche d'hospitalisation ACHA>Date sortie
+   - Gynécologie > Fiche d'hospitalisation ACHA>Unité
+   - Gynécologie > Fiche d'hospitalisation ACHA>Responsable
+   - Gynécologie > Fiche d'hospitalisation ACHA>Responsable txt
+   - Gynécologie > Fiche d'hospitalisation ACHA>Medecin
+   - Gynécologie > Fiche d'hospitalisation ACHA>Medecin txt
+   - Gynécologie > Fiche d'hospitalisation ACHA>Medecin id
+   - Gynécologie > Fiche d'hospitalisation ACHA>Medecine Interne txt
+   - Gynécologie > Fiche d'hospitalisation ACHA>Erreur recup antecedent vsm
+   - Gynécologie > Fiche d'hospitalisation ACHA>Erreur recup traitement perso
+   - Gynécologie > Fiche d'hospitalisation ACHA>Traitement personnel d'entrée
+   - Gynécologie > Fiche d'hospitalisation ACHA>Poids
+   - Gynécologie > Fiche d'hospitalisation ACHA>Motif d'entrée
+   - Gynécologie > Fiche d'hospitalisation ACHA>Histoire de la maladie
+   - Gynécologie > Fiche d'hospitalisation ACHA>Habitude de vie
+   - Gynécologie > Fiche d'hospitalisation ACHA>Examens clinique
+   - Gynécologie > Fiche d'hospitalisation ACHA>Conclusion examen clinique initial
+   - Gynécologie > Fiche d'hospitalisation ACHA>Cle recup infos mots suivis
+   - Gynécologie > Fiche d'hospitalisation ACHA>Patient porteur/contact de BMR ou BHRe
+   - Gynécologie > Fiche d'hospitalisation ACHA>Commentaire patient porteur/contact de BMR ou BHRe
+   - Gynécologie > Fiche d'hospitalisation ACHA>Transfusion
+   - Gynécologie > Fiche d'hospitalisation ACHA>Commentaire transfusion
+   - Gynécologie > Fiche d'hospitalisation ACHA>Antécédent transfusion
+   - Gynécologie > Fiche d'hospitalisation ACHA>Transfusion.1
+   - Gynécologie > Fiche d'hospitalisation ACHA>Antécédent suivi MDS
+   - Gynécologie > Fiche d'hospitalisation ACHA>Allergie
+   - Gynécologie > Fiche d'hospitalisation ACHA>Commentaire allergie
+   - Gynécologie > Fiche d'hospitalisation ACHA>Actes techniques, biologiques ou imagerie marquants
+   - Gynécologie > Fiche d'hospitalisation ACHA>Commentaire actes techniques, biologiques ou imagerie marquants
+   - Gynécologie > Fiche d'hospitalisation ACHA>Récupération actes techniques, biologiques ou imagerie marquants
+   - Gynécologie > Fiche d'hospitalisation ACHA>Pose d'un dispositif medico implantable
+   - Gynécologie > Fiche d'hospitalisation ACHA>Commentaire pose d'un dispositif medico implantablePose d'un dispositif medico implantable
+   - Gynécologie > Fiche d'hospitalisation ACHA>Evenemements indesirables - complications
+   - Gynécologie > Fiche d'hospitalisation ACHA>Commentaire Evenemements indesirables - complications
+   - Gynécologie > Fiche d'hospitalisation ACHA>Autre evènement
+   - Gynécologie > Fiche d'hospitalisation ACHA>Diagnostic de sortie
+   - Gynécologie > Fiche d'hospitalisation ACHA>Destination de sortie
+   - Gynécologie > Fiche d'hospitalisation ACHA>Dest sortie txt
+   - Gynécologie > Fiche d'hospitalisation ACHA>Commune traitement habituel
+   - Gynécologie > Fiche d'hospitalisation ACHA>Prescription de sortie
+   - Gynécologie > Fiche d'hospitalisation ACHA>Continuité des soins
+   - Gynécologie > Fiche d'hospitalisation ACHA>Erreur recup rdv
+   - Gynécologie > Fiche d'hospitalisation ACHA>RDV à prendre par le patient
+   - Gynécologie > Fiche d'hospitalisation ACHA>RDV pris pour le patient
+   - Gynécologie > Fiche d'hospitalisation ACHA>Autre continuité
+   - Gynécologie > Fiche d'hospitalisation ACHA>Consignes textes types
+   - Gynécologie > Fiche d'hospitalisation ACHA>Consignes
+   - Gynécologie > Fiche d'hospitalisation ACHA>Prise en charge sociale
+   - Gynécologie > Fiche d'hospitalisation ACHA>Prise en charge sociale txt
+   - Gynécologie > Fiche d'hospitalisation ACHA>Conseil, recommandation ou surveillance particulière
+   - Gynécologie > Fiche d'hospitalisation ACHA>UniqueId
+   - Gynécologie > Fiche d'hospitalisation ACHA>Gen crh
+   - Gynécologie > Fiche d'hospitalisation ACHA>Gen doc sortie val crh
+   - Gynécologie > Fiche d'hospitalisation ACHA>Gen doc sortie
+   - Gynécologie > Fiche d'hospitalisation ACHA>Patient porteur/contact de BMR ou BHRe.1
+   - Gynécologie > Fiche d'hospitalisation ACHA>Specialite fiche intro / Titre
+   - Gynécologie > Fiche d'hospitalisation ACHA>Specialite fiche contenu / Titre
+   - Gynécologie > Fiche d'hospitalisation ACHA>Specialite fiche conclusion / Titre
+   - Gynécologie > Fiche d'hospitalisation ACHA>Transplan renale greffon2 / Transplan renale ischemie chaude
+   - Gynécologie > Fiche d'hospitalisation ACHA>Transplan renale greffon2 / Transplan renale bacteriologie
+   - Gynécologie > Fiche d'hospitalisation ACHA>Transplan renale greffon2 / Transplan renale bacterio contamine
+   - Gynécologie > Fiche d'hospitalisation ACHA>Transplan renale greffon2 / Transplan renale mycologie
+   - Gynécologie > Fiche d'hospitalisation ACHA>Transplan renale greffon2 / Transplan renale mycologie contamine detail
+   - Gynécologie > Fiche d'hospitalisation ACHA>Transplan renale greffon2 / Transplan renale machine perfusion
+   - Gynécologie > Fiche d'hospitalisation ACHA>Transplan renale greffon2 / Transplan renale biopsie declampage
+   - Gynécologie > Fiche d'hospitalisation ACHA>Transplan renale greffon2 / Transplan renale pres sonde JJ
+   - Gynécologie > Fiche d'hospitalisation ACHA>Transplan pancreas greffon / Transplan pancreas fosse iliaque
+   - Gynécologie > Fiche d'hospitalisation ACHA>Transplan pancreas greffon / Transplan pancreas date clampage
+   - Gynécologie > Fiche d'hospitalisation ACHA>Transplan pancreas greffon / Transplan pancreas date sortie greffon
+   - Gynécologie > Fiche d'hospitalisation ACHA>Transplan pancreas greffon / Transplan pancreas ischemie froide
+   - Gynécologie > Fiche d'hospitalisation ACHA>Transplan pancreas greffon / Transplan pancreas ischemie chaude
+   - Gynécologie > Fiche d'hospitalisation ACHA>Transplan pancreas greffon / Transplan pancreas ischemie totale
+   - Gynécologie > Fiche d'hospitalisation ACHA>Sejours / Id venue
+   - Gynécologie > Fiche d'hospitalisation ACHA>Antecedent / Id
+   - Gynécologie > Fiche d'hospitalisation ACHA>Antecedent / Type antecedent
+   - Gynécologie > Fiche d'hospitalisation ACHA>Antecedent / Libelle
+   - Gynécologie > Fiche d'hospitalisation ACHA>Antecedent / Libelle antecedent sans cim
+   - Gynécologie > Fiche d'hospitalisation ACHA>Incl historique ordonnance / Prescripteur
+   - Gynécologie > Fiche d'hospitalisation ACHA>Incl historique ordonnance / Date ordonnance
+   - Gynécologie > Fiche d'hospitalisation ACHA>Incl historique ordonnance / Prescription
+   - Gynécologie > Fiche d'hospitalisation ACHA>Incl historique ordonnance / Selection
+   - Gynécologie > Fiche d'hospitalisation ACHA>Evol et suivi / Date mot
+   - Gynécologie > Fiche d'hospitalisation ACHA>Evol et suivi / Intervenant mot
+   - Gynécologie > Fiche d'hospitalisation ACHA>Evol et suivi / Intervenant mot id
+   - Gynécologie > Fiche d'hospitalisation ACHA>Evol et suivi / Intervenant mot txt
+   - Gynécologie > Fiche d'hospitalisation ACHA>Evol et suivi / Mot
+   - Gynécologie > Fiche d'hospitalisation ACHA>Evol et suivi / Compe rendu de sortie
+   - Gynécologie > Fiche d'hospitalisation ACHA>Evol et suivi / Btn modifier visible
+   - Gynécologie > Fiche d'hospitalisation ACHA>Evol et suivi / Est importe
+   - Gynécologie > Fiche d'hospitalisation ACHA>Evol et suivi croissant / Date mot
+   - Gynécologie > Fiche d'hospitalisation ACHA>Evol et suivi croissant / Intervenant mot
+   - Gynécologie > Fiche d'hospitalisation ACHA>Evol et suivi croissant / Intervenant mot id
+   - Gynécologie > Fiche d'hospitalisation ACHA>Evol et suivi croissant / Intervenant mot txt
+   - Gynécologie > Fiche d'hospitalisation ACHA>Evol et suivi croissant / Mot
+   - Gynécologie > Fiche d'hospitalisation ACHA>Evol et suivi croissant / Compe rendu de sortie
+   - Gynécologie > Fiche d'hospitalisation ACHA>Evol et suivi croissant / Btn modifier visible
+   - Gynécologie > Fiche d'hospitalisation ACHA>Evol et suivi croissant / Est importe
+   - Gynécologie > Fiche d'hospitalisation ACHA>Incl allergie au cours du sejour / Code cim
+   - Gynécologie > Fiche d'hospitalisation ACHA>Fiche consultation complications / Type complications
+   - Gynécologie > Fiche d'hospitalisation ACHA>Incl diagnostics cliniques / Diagnostic
+   - Gynécologie > Fiche d'hospitalisation ACHA>Liste rdv / Date
+   - Gynécologie > Fiche d'hospitalisation ACHA>Liste rdv / Type rdv
+   - Gynécologie > Fiche d'hospitalisation ACHA>Liste rdv / Nom de l'agenda
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Sous fiche affichee
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Etat fiches NIHSS supprimees
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Id vue
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Bypass prescription sortie
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Vue com dossier asur existant
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Vue com date sortie asur
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Liste specialites
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Synthese
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Intervention selectionnee id
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Modification traitement patient
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Traitement admission SSR
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Pathologie cocher decocher suivis
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Liste pathologies txt
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Texte type signes fonctionnels état général
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Asthénie
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Mois (mois)
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Ulcération buccale
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Declare mesure nomen
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Declare mesure chumlea nomen
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Texte type signes fonctionnels sensoriels
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Droite
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Gauche.2
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Confusion
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Pensées désorganisées
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Désorientation temporelle
+   - Gynécologie > Fiche d'hospitalisation réglementaire>O2
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Signes fonctionnels abdo saisis dans la fiche
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Examen admission caryotype date
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Examen admission biologie moleculaire date
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Examen admission biologie moleculaire
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Examen admission score comorbidite
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Examen admission RP
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Examen admission EFR date
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Examen admission EFR
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Examen admission ECG date
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Examen admission echographie cardiaque
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Examen admission echographie cardiaque date
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Examen admission catheters
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Vue Médecine - Médecin traitant
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Habitudes toxiques choix
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Erreur recup facteurs de risques
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Date CRH
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Date dernière génération
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Date de génération du document de sortie
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Date de génération du document de sortie valant CRH
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Date de génération du CRH
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Date entrée
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Date sortie
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Responsable
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Responsable txt
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Medecin
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Medecin txt
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Traitement personnel d'entrée
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Motif d'entrée
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Histoire de la maladie
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Conclusion examen clinique initial
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Patient porteur/contact de BMR ou BHRe
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Transfusion
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Commentaire transfusion
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Antécédent transfusion
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Transfusion.1
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Allergie
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Commentaire allergie
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Actes techniques, biologiques ou imagerie marquants
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Commentaire actes techniques, biologiques ou imagerie marquants
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Récupération actes techniques, biologiques ou imagerie marquants
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Pose d'un dispositif medico implantable
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Commentaire pose d'un dispositif medico implantablePose d'un dispositif medico implantable
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Evenemements indesirables - complications
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Commentaire Evenemements indesirables - complications
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Autre evènement
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Diagnostic de sortie
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Destination de sortie
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Dest sortie txt
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Commune traitement habituel
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Prescription de sortie
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Continuité des soins
+   - Gynécologie > Fiche d'hospitalisation réglementaire>RDV à prendre par le patient
+   - Gynécologie > Fiche d'hospitalisation réglementaire>RDV pris pour le patient
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Autre continuité
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Consignes
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Prise en charge sociale
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Conseil, recommandation ou surveillance particulière
+   - Gynécologie > Fiche d'hospitalisation réglementaire>UniqueId
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Gen crh
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Gen doc sortie val crh
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Gen doc sortie
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Patient porteur/contact de BMR ou BHRe.1
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Specialite fiche intro / Titre
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Specialite fiche contenu / Titre
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Specialite fiche conclusion / Titre
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Sejours / Id venue
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Antecedent / Id
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Antecedent / Type antecedent
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Antecedent / Libelle
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Antecedent / Libelle antecedent sans cim
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Incl historique ordonnance / Prescripteur
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Incl historique ordonnance / Date ordonnance
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Incl historique ordonnance / Prescription
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Incl historique ordonnance / Selection
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Evol et suivi / Date mot
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Evol et suivi / Intervenant mot
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Evol et suivi / Intervenant mot id
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Evol et suivi / Intervenant mot txt
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Evol et suivi / Mot
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Evol et suivi / Compe rendu de sortie
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Evol et suivi / Btn modifier visible
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Evol et suivi / Est importe
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Evol et suivi croissant / Date mot
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Evol et suivi croissant / Intervenant mot
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Evol et suivi croissant / Intervenant mot id
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Evol et suivi croissant / Intervenant mot txt
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Evol et suivi croissant / Mot
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Evol et suivi croissant / Compe rendu de sortie
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Evol et suivi croissant / Btn modifier visible
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Evol et suivi croissant / Est importe
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Incl diagnostics cliniques / Diagnostic
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Liste rdv / Type rdv
+   - Gynécologie > Fiche d'hospitalisation réglementaire>Liste rdv / Nom de l'agenda
+[OK] Texte par patiente écrit dans : C:\Users\user\Documents\endopath\exploratory\preprocessing\Data\DATA_PROCESSED\dossier_gyneco_texte_par_patiente.csv
+     → 200 patientes
+[OK] Vocabulaire écrit dans : C:\Users\user\Documents\endopath\exploratory\preprocessing\Data\DATA_PROCESSED\vocab_dossier_gyneco_from_xlsx.csv
+     → 15796 tokens uniques
+[FIN] Script terminé avec succès.
+PS C:\Users\user\Documents\endopath\exploratory\preprocessing>

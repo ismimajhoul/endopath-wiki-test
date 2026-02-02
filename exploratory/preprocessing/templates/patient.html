@@ -1,0 +1,821 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>Correction de Tokens – Patiente {{ num_inclusion }}</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 20px; }
+      .container { max-width: 1400px; margin: 0 auto; }
+      .header { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+      .username { font-size: 13px; color: #555; text-align: right; }
+      a { text-decoration: none; color: #005bbb; }
+      a:hover { text-decoration: underline; }
+
+      .legend { margin: 10px 0 14px; padding: 10px; border: 1px solid #eee; border-radius: 8px; background: #fafafa; }
+      .legend span { display:inline-block; padding:2px 8px; border-radius: 999px; margin-right: 8px; font-size: 12px; border: 1px solid transparent; }
+      .pill-auto   { background:#e8f5e9; border-color:#c8e6c9; }
+      .pill-choice { background:#e3f2fd; border-color:#bbdefb; }
+      .pill-alert  { background:#fff3e0; border-color:#ffe0b2; }
+      .pill-noise  { background:#f5f5f5; border-color:#e0e0e0; }
+
+      .layout { display: grid; grid-template-columns: 560px 1fr; gap: 28px; }
+      .panel { border: 1px solid #ddd; border-radius: 10px; padding: 12px; background: #fff; }
+      .panel h2 { margin: 0 0 10px 0; font-size: 16px; }
+
+      .btn { padding: 8px 12px; border-radius: 8px; border: 1px solid #ccc; background: #f8f8f8; cursor: pointer; }
+      .btn.primary { background: #005bbb; color: #fff; border-color:#005bbb; }
+      .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+      .btn.small { padding: 5px 10px; border-radius: 999px; font-size: 12px; }
+
+      .small { font-size: 12px; color: #666; }
+      .muted { color: #888; }
+
+      .families { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+      .family-box { border: 1px solid #eee; border-radius: 10px; padding: 10px; background: #fcfcfc; }
+      .family-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+      .family-row label { display:flex; gap: 8px; align-items:center; }
+      .family-actions { display:flex; gap: 8px; align-items:center; }
+
+      .badge { display:inline-block; font-size: 11px; padding: 2px 8px; border-radius: 999px; border: 1px solid transparent; white-space: nowrap; }
+
+      /* Family badge colors (distinct per family) */
+      .fam-dict        { background:#dff5e1; border-color:#a9e2b0; color:#145a1f; }
+      .fam-phrase      { background:#d8f0de; border-color:#8bd3a1; color:#0f4a21; }
+      .fam-typo        { background:#fff0d9; border-color:#ffd08a; color:#7a4a00; }
+      .fam-accent      { background:#e2ecf7; border-color:#b8cde7; color:#1c3f66; }
+      .fam-accentplus  { background:#e9f2ff; border-color:#cfe0ff; color:#204a7a; }
+      .fam-abbrev-sure { background:#efe3ff; border-color:#d3b8ff; color:#4a1a7a; }
+      .fam-abbrev-cand { background:#f5ecff; border-color:#e1d0ff; color:#5a2a88; }
+      .fam-expert      { background:#f3e6ff; border-color:#d9bfff; color:#4b1a7b; }
+      .fam-choice      { background:#e3f2fd; border-color:#bbdefb; color:#0b3c6e; }
+      .fam-alert       { background:#fff3e0; border-color:#ffe0b2; color:#6b3b00; }
+      .fam-noise       { background:#f5f5f5; border-color:#e0e0e0; color:#444; }
+      .fam-unk         { background:#f0f0f0; border-color:#ddd; color:#333; }
+
+      .tokens { margin-top: 10px; border-top: 1px dashed #eee; padding-top: 10px; }
+      .token-row { display:flex; gap:10px; align-items: baseline; padding: 6px 0; border-bottom: 1px solid #f3f3f3; }
+      .token-row:last-child { border-bottom:none; }
+      .tok { font-weight: 600; }
+      .arrow { color:#999; }
+      .occ { font-size: 12px; color:#666; margin-left: auto; }
+
+      .text-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .text-box { white-space: pre-wrap; line-height: 1.35; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 13px; border:1px solid #eee; border-radius: 10px; padding: 10px; background:#fff; }
+      .text-title { font-weight: 700; margin: 0 0 8px 0; }
+
+      /* Highlighting rules */
+      .hl-before-auto   { background: #ffd6d6; }  /* red in BEFORE for selected auto */
+      .hl-before-choice { background: #d6eaff; }  /* blue in BEFORE for selected choice */
+      .hl-after-applied { background: #d5f5d8; }  /* green in AFTER for applied */
+
+      .sent-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .sent { border: 1px solid #eee; padding: 10px; border-radius: 10px; margin-bottom: 10px; background:#fff; }
+      .sent-title { font-weight: 700; margin-bottom: 8px; }
+
+      /* ---- NEW: group Avant/Après per sentence ---- */
+      .pair-list { display: grid; gap: 12px; }
+      .pair-card { border: 1px solid #ddd; border-radius: 12px; background:#fff; padding: 10px; }
+      .pair-head { display:flex; align-items:center; justify-content:space-between; gap: 12px; margin-bottom: 8px; }
+      .pair-body { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+      .pair-col-title { font-weight:700; font-size: 12px; color:#555; margin: 0 0 6px 0; }
+
+      .hl-after-choice { background: #d7ebff; border: 1px solid #6aa7ff; border-radius: 4px; padding: 0 2px; }
+
+    </style>
+
+    <script>
+      function toggleAllFamily(family, checked) {
+        // Sélectionner UNIQUEMENT les cases de suggestions (selected_keys)
+        const boxes = document.querySelectorAll(
+          "input[type='checkbox'][name='selected_keys'][data-family='" + family + "']"
+        );
+
+        boxes.forEach(b => { b.checked = checked; });
+
+        // Recalcul immédiat sans rechargement de page
+        if (typeof refreshPreview === "function") {
+          refreshPreview();
+        }
+      }
+
+
+      function applyFamilies() {
+        document.getElementById("familiesForm").submit();
+      }
+    </script>
+
+  </head>
+
+  <body>
+    <div id="pageState"
+      data-phrase-mode="{{ 1 if phrase_mode else 0 }}"
+      data-enabled-families='{{ enabled_families|tojson }}'>
+    </div>
+
+    <div class="container">
+
+      <div class="header">
+        <div>
+          <h1 style="margin:0;">Fiche patiente : {{ num_inclusion }}</h1>
+          <div class="small" style="margin-top:6px;">
+            Statut : <strong>{{ status_texte }}</strong>
+            {% if saved_updated_at %}
+              <span class="muted">— dernière sauvegarde {{ saved_updated_at }}{% if saved_updated_by %} ({{ saved_updated_by }}){% endif %}</span>
+            {% endif %}
+          </div>
+
+          <div class="small">Généré : {{ now }}</div>
+          <div style="margin-top:4px;"><a href="{{ url_for('patients') }}">← Retour à la liste des patientes</a></div>
+        </div>
+        <div class="username">
+          {% if username %}Utilisateur : {{ username }}{% endif %}
+        </div>
+      </div>
+
+      <div class="legend">
+        <span class="pill-auto">Auto : appliquable (optionnel)</span>
+        <span class="pill-choice">Choix : décision requise</span>
+        <span class="pill-alert">Alerte : relecture</span>
+        <span class="pill-noise">Bruit : ignoré</span>
+      </div>
+
+      {% if original_text_empty %}
+        <div class="panel">
+          <strong>Texte manquant</strong>
+          <div class="small">Aucun texte diag_gyneco trouvé pour cette patiente.</div>
+        </div>
+      {% endif %}
+
+      <div class="layout">
+
+        <!-- LEFT -->
+        <div class="panel">
+          <h2>1) Sélection par familles</h2>
+
+          <form id="familiesForm" method="GET" action="{{ url_for('patient', num_inclusion=num_inclusion) }}">
+            <input type="hidden" name="phrase_mode" value="{{ '1' if phrase_mode else '0' }}">
+            <input type="hidden" name="families_present" value="1">
+
+            <div class="small">Coche une ou plusieurs familles : elles alimentent la liste des phonèmes ci-dessous.</div>
+            <div style="margin-top:10px;" class="families">
+              {% for f in families_ui %}
+                <div class="family-box">
+                  <div class="family-row">
+                    <label>
+                      <input type="checkbox" name="families" value="{{ f.family }}"
+                             {% if f.family in enabled_families %}checked{% endif %}
+                             onchange="applyFamilies()">
+                      <span class="badge {{ f.badge_css }}">{{ f.label }}</span>
+                      {% if f.is_auto %}
+                        <span class="small muted">auto</span>
+                      {% else %}
+                        <span class="small muted">choix</span>
+                      {% endif %}
+                    </label>
+
+                    <div class="family-actions">
+                      <button class="btn small" type="button" onclick="toggleAllFamily('{{ f.family }}', true)">Tout</button>
+                      <button class="btn small" type="button" onclick="toggleAllFamily('{{ f.family }}', false)">Rien</button>
+                    </div>
+                  </div>
+
+                  <div class="small" style="margin-top:6px;">
+                    {% set n = (suggestions_by_family.get(f.family) or [])|length %}
+                    {{ n }} élément(s) détecté(s) pour cette patiente.
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </form>
+
+          <hr style="margin:14px 0;">
+
+          <h2>2) Phonèmes détectés</h2>
+          <div class="small">
+            Coche les phonèmes à appliquer (auto) ou à surligner (choix).
+            Règle de surbrillance : <strong>Avant</strong> rouge (auto) / bleu (choix), <strong>Après</strong> vert (appliqué).
+          </div>
+
+          <form id="tokensForm" method="POST" style="margin-top:12px;">
+            <div style="display:flex; gap:10px; align-items:center; flex-wrap: wrap;">
+              <button class="btn primary" type="submit" name="action" value="apply">
+                Appliquer la sélection
+              </button>
+
+              <button class="btn" type="submit" name="action" value="validate">
+                Valider
+              </button>
+
+
+              <a class="btn" href="{{ url_for('patient', num_inclusion=num_inclusion, phrase_mode='1' if not phrase_mode else '0', families=enabled_families) }}">
+                {% if phrase_mode %}Désactiver{% else %}Activer{% endif %} mode phrase par phrase
+              </a>
+
+              <span class="small muted">Astuce : garde les familles cochées, et ajuste au cas par cas.</span>
+            </div>
+
+            <div class="tokens">
+              {% set any_tok = false %}
+
+              {% for f in families_ui %}
+                {% set rows = suggestions_by_family.get(f.family) or [] %}
+                {% if rows|length > 0 %}
+                  {% set any_tok = true %}
+                  <div style="margin: 14px 0 6px;">
+                    <span class="badge {{ f.badge_css }}">{{ f.label }}</span>
+                    {% if f.is_auto %}
+                      <span class="small">Corrections appliquables</span>
+                    {% else %}
+                      <span class="small">Choix utilisateur (non appliqué)</span>
+                    {% endif %}
+                  </div>
+
+                  {% for s in rows %}
+                    <div class="token-row">
+                      <input
+                        type="checkbox"
+                        name="selected_keys"
+                        value="{{ s.key() }}"
+                        data-sug-key="{{ s.key() }}"
+                        data-family="{{ s.family }}"
+                        data-kind="token"
+                        {% if s.key() in selected_key_set %}checked{% endif %}
+                      >
+
+
+                      <span class="badge {{ s.badge_css }}">{{ s.family_label }}</span>
+
+                      <span class="tok">{{ s.token_source }}</span>
+
+                      {% if s.family == "ABBREV_AMBIGU" %}
+                        <span class="small muted">(à décider)</span>
+
+                        {% set exp = (s.note or "") %}
+                        {% if exp %}
+                          <details style="margin-left: 10px;">
+                            <summary class="small muted" style="cursor:pointer;">Choisir une expansion</summary>
+                            <div class="small muted" style="margin-top:6px;">
+                              {# On s’attend à une note du type: "Possibles : a / b / c" #}
+                              {% set exp_clean = exp.replace("Possibles :", "").strip() %}
+                              {% set items = exp_clean.split("/") %}
+                              {% for it in items %}
+                                {% set choice = it.strip() %}
+                                {% if choice %}
+                                  <label style="display:block; margin: 4px 0;">
+                                    <input
+                                      type="radio"
+                                      data-abbrev-key="{{ s.key() }}"
+                                      name="choice_{{ s.key() }}"
+                                      value="{{ choice }}"
+                                      {% if selected_abbrev_choices and selected_abbrev_choices.get(s.key()) == choice %}checked{% endif %}
+                                    >
+
+                                    {{ choice }}
+                                  </label>
+                                {% endif %}
+                              {% endfor %}
+                            </div>
+                          </details>
+                        {% endif %}
+
+                      {% else %}
+                        {% if s.match %}
+                          <span class="arrow">→</span>
+                          <span class="tok">{{ s.match }}</span>
+                        {% else %}
+                          <span class="small muted">(à décider)</span>
+                        {% endif %}
+
+                        {% if (not s.match) and s.note %}
+                          <div class="small muted">{{ s.note }}</div>
+                        {% endif %}
+                      {% endif %}
+
+
+                      <span class="occ">(occ patiente: {{ s.patient_occ }})</span>
+                    </div>
+                  {% endfor %}
+                {% endif %}
+              {% endfor %}
+
+              {% if not any_tok %}
+                <div class="small muted">Aucun phonème détecté pour les familles sélectionnées.</div>
+              {% endif %}
+            </div>
+          </form>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="panel">
+          <h2>3) Texte Avant / Après</h2>
+
+          {% if phrase_mode %}
+            <div class="sent-title">Phrases alignées (Avant / Après)</div>
+
+            {% set min_len = [original_sentences|length, corrected_sentences|length]|min %}
+
+            <div class="pair-list">
+              {% for i in range(min_len) %}
+                <div class="pair-card">
+                  <div class="pair-head">
+                    <label class="small muted" style="user-select:none;">
+                      <input type="checkbox" class="chkSentenceColor" data-sent-idx="{{ i }}" checked>
+                      Couleurs
+                    </label>
+                    <span class="small muted">Phrase {{ i + 1 }}</span>
+                  </div>
+
+                  <div class="pair-body">
+                    <div>
+                      <div class="pair-col-title">Avant</div>
+                      <div id="sent_before_{{ i }}" class="sent text-box">{{ original_sentences[i] }}</div>
+                    </div>
+                    <div>
+                      <div style="display:flex; justify-content:space-between; align-items:center; gap:10px;">
+                        <div class="pair-col-title">Après</div>
+                        <div style="display:flex; gap:6px;">
+                          <button class="btn small btnEditAfter" type="button" data-sent-idx="{{ i }}">Edit</button>
+                          <button class="btn small btnResetAfter" type="button" data-sent-idx="{{ i }}">Reset</button>
+                        </div>
+
+                      </div>
+
+                      <div id="sent_after_view_{{ i }}" class="sent text-box">{{ corrected_sentences[i] }}</div>
+
+                      <div id="sent_after_edit_{{ i }}" style="display:none;">
+                        <textarea id="sent_after_textarea_{{ i }}" class="text-box" style="width:100%; min-height:110px;">{{ corrected_sentences[i] }}</textarea>
+                        <div style="margin-top:8px; display:flex; gap:8px; justify-content:flex-end;">
+                          <button class="btn small btnCancelAfter" type="button" data-sent-idx="{{ i }}">Annuler</button>
+                          <button class="btn small primary btnConfirmAfter" type="button" data-sent-idx="{{ i }}">Confirmer</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+
+          {% else %}
+            <div class="text-grid">
+              <div>
+                <div class="text-title">Avant</div>
+                <div id="box_before" class="text-box">{{ highlighted_before|safe }}</div>
+              </div>
+              <div>
+                <div class="text-title">Après</div>
+                <div id="box_after" class="text-box">{{ highlighted_after|safe }}</div>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+  let lockedAfterIdx = null;
+  let lockedAfterText = null;
+
+  function getPageState() {
+    const el = document.getElementById("pageState");
+    const phraseMode = (el.getAttribute("data-phrase-mode") === "1");
+    let enabledFamilies = [];
+    try {
+      enabledFamilies = JSON.parse(el.getAttribute("data-enabled-families") || "[]");
+    } catch(e) {
+      enabledFamilies = [];
+    }
+    return { phraseMode, enabledFamilies };
+  }
+
+  function collectSelectedKeys() {
+  return Array.from(document.querySelectorAll("input[type=checkbox][data-sug-key]"))
+    .filter(cb => cb.checked)
+    .map(cb => cb.getAttribute("data-sug-key"));
+}
+
+
+  function collectAbbrevChoices() {
+  const out = {};
+  const radios = document.querySelectorAll("input[type=radio][data-abbrev-key]");
+  const byKey = new Map();
+
+  radios.forEach(r => {
+    const k = r.getAttribute("data-abbrev-key");
+    if (!byKey.has(k)) byKey.set(k, []);
+    byKey.get(k).push(r);
+  });
+
+  byKey.forEach((arr, k) => {
+    const sel = arr.find(r => r.checked);
+    if (sel) out[k] = sel.value;
+  });
+
+  return out;
+}
+
+function persistUiState() {
+  const st = getPageState();
+  const state = {
+    selected_keys: collectSelectedKeys(),
+    abbrev_choices: collectAbbrevChoices(),
+    enabled_families: st.enabledFamilies
+  };
+  sessionStorage.setItem("patient_ui_state_{{ num_inclusion }}", JSON.stringify(state));
+}
+
+document.addEventListener("click", (e) => {
+  const a = e.target && e.target.closest && e.target.closest("a");
+  if (!a) return;
+
+  // Seulement le lien de bascule phrase_mode (celui qui contient phrase_mode=)
+  const href = a.getAttribute("href") || "";
+  if (href.includes("phrase_mode=")) {
+    persistUiState();
+  }
+});
+
+
+    function collectSentenceColorMask() {
+    const boxes = Array.from(document.querySelectorAll(".chkSentenceColor"));
+    if (boxes.length === 0) return null;
+
+    const maxIdx = Math.max(...boxes.map(b => parseInt(b.getAttribute("data-sent-idx") || "0", 10)));
+    const mask = new Array(maxIdx + 1).fill(true);
+
+    boxes.forEach(b => {
+        const idx = parseInt(b.getAttribute("data-sent-idx") || "0", 10);
+        mask[idx] = !!b.checked;
+    });
+
+    // Si la phrase a été éditée manuellement, on force la désactivation des couleurs
+    editedSentenceIdx.forEach((idx) => {
+        if (idx >= 0 && idx < mask.length) mask[idx] = false;
+    });
+
+    return mask;
+}
+
+let previewReqId = 0;
+
+
+  async function refreshPreview() {
+  // Anti-race: seule la dernière réponse a le droit d'écrire dans le DOM
+  const myReqId = ++previewReqId;
+
+  const st = getPageState();
+
+  const payload = {
+    selected_keys: collectSelectedKeys(),
+    abbrev_choices: collectAbbrevChoices(),
+    phrase_mode: st.phraseMode,
+    enabled_families: st.enabled_families || st.enabledFamilies || []
+  };
+
+  if (st.phraseMode) {
+    const mask = collectSentenceColorMask();
+    if (mask) payload.sentence_color_mask = mask;
+  }
+
+  let resp;
+  try {
+    resp = await fetch("{{ url_for('patient_preview', num_inclusion=num_inclusion) }}", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(payload),
+    });
+  } catch (e) {
+    return;
+  }
+
+  if (!resp || !resp.ok) return;
+
+  let data;
+  try {
+    data = await resp.json();
+  } catch (e) {
+    return;
+  }
+
+  // Ignore les réponses obsolètes
+  if (myReqId !== previewReqId) return;
+
+  if (data.mode === "sentences") {
+    const beforeArr = data.before_sentences_html || [];
+    const afterArr  = data.after_sentences_html  || [];
+
+    for (let i = 0; i < beforeArr.length; i++) {
+      const el = document.getElementById("sent_before_" + i);
+      if (el) el.innerHTML = beforeArr[i];
+    }
+
+    for (let i = 0; i < afterArr.length; i++) {
+      const v = document.getElementById("sent_after_view_" + i);
+      if (!v) continue;
+
+      // Lock uniquement si on est réellement en train d'éditer cette phrase
+      const editBox = document.getElementById("sent_after_edit_" + i);
+      const isEditing = editBox && editBox.style.display !== "none";
+
+      if (lockedAfterIdx === i && (lockedAfterText || "").length > 0 && isEditing) {
+        v.textContent = lockedAfterText;
+        continue;
+      }
+
+      v.innerHTML = afterArr[i];
+    }
+
+    return;
+  }
+
+  // mode full
+  const b1 = document.getElementById("box_before");
+  const b2 = document.getElementById("box_after");
+  if (b1) b1.innerHTML = data.highlighted_before || "";
+  if (b2) b2.innerHTML = data.highlighted_after || "";
+}
+
+
+  document.addEventListener("change", (e) => {
+  const t = e.target;
+  if (!t) return;
+
+  // 1) Checkbox sélection suggestion
+  if (t.matches("input[name='selected_keys']")) {
+    const fam = (t.getAttribute("data-family") || "").trim();
+    const key = (t.value || "").trim();
+
+    if (fam === "ABBREV_AMBIGU" && key && !t.checked) {
+      // reset radios de cette abrév
+      const radios = document.querySelectorAll(
+        "input[type=radio][name='choice_" + CSS.escape(key) + "']"
+      );
+      radios.forEach(r => { r.checked = false; });
+    }
+    lockedAfterIdx = -1;
+    lockedAfterText = "";
+    refreshPreview();
+    return;
+  }
+
+  // 2) Radio ABBREV_AMBIGU
+  if (t.matches("input[type='radio'][name^='choice_']")) {
+  // Un changement de choix ABBREV doit se refléter immédiatement
+  lockedAfterIdx = -1;
+  lockedAfterText = "";
+
+  // tick suivant pour laisser le DOM mettre à jour .checked
+  setTimeout(() => refreshPreview(), 0);
+  return;
+}
+
+
+  // 3) Checkbox "Couleurs" en phrase par phrase
+  if (t.matches(".chkSentenceColor")) {
+    refreshPreview();
+    return;
+  }
+});
+
+
+  document.addEventListener("DOMContentLoaded", () => {
+  const raw = sessionStorage.getItem("patient_ui_state_{{ num_inclusion }}");
+  if (raw) {
+    try {
+      const state = JSON.parse(raw);
+
+      // restore checkboxes
+      (state.selected_keys || []).forEach(k => {
+        const cb = document.querySelector("input[name='selected_keys'][value=\"" + k.replace(/"/g, '\\"') + "\"]");
+        if (cb) cb.checked = true;
+      });
+
+      // restore radios ABBREV
+      const choices = state.abbrev_choices || {};
+      Object.keys(choices).forEach(k => {
+        const v = choices[k];
+        const r = document.querySelector("input[type='radio'][name='choice_" + k.replace(/'/g,"\\'") + "'][value=\"" + v.replace(/"/g, '\\"') + "\"]");
+        if (r) r.checked = true;
+      });
+    } catch(e) {}
+  }
+
+  refreshPreview();
+});
+
+  const editedSentenceIdx = new Set(); // phrases modifiées manuellement => pas de couleurs
+
+function setSentenceEditMode(i, on) {
+  const v = document.getElementById("sent_after_view_" + i);
+  const e = document.getElementById("sent_after_edit_" + i);
+  if (!v || !e) return;
+
+  v.style.display = on ? "none" : "block";
+  e.style.display = on ? "block" : "none";
+}
+
+function getSentenceTextareaValue(i) {
+  const ta = document.getElementById("sent_after_textarea_" + i);
+  return ta ? ta.value : "";
+}
+
+function setSentenceViewHtml(i, html) {
+  const v = document.getElementById("sent_after_view_" + i);
+  if (v) v.innerHTML = html;
+}
+
+function markSentenceNoColors(i) {
+  editedSentenceIdx.add(i);
+
+  // décoche "Couleurs" sur la carte si le checkbox existe
+  const chk = document.querySelector(".chkSentenceColor[data-sent-idx='" + i + "']");
+  if (chk) chk.checked = false;
+}
+
+async function resetSentence(i) {
+  const st = getPageState();
+  const payload = {
+    sent_idx: i,
+    enabled_families: st.enabledFamilies,
+    selected_keys: collectSelectedKeys(),
+    abbrev_choices: collectAbbrevChoices()
+  };
+
+  const resp = await fetch("{{ url_for('patient_sentence_reset', num_inclusion=num_inclusion) }}", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(payload),
+  });
+
+  if (!resp.ok) {
+    let msg = "Erreur reset phrase (" + resp.status + ")";
+    try {
+      const j = await resp.json();
+      if (j && j.error) msg += " : " + j.error;
+    } catch (e) {}
+    alert(msg);
+    return false;
+  }
+
+  const data = await resp.json();
+  if (!data.ok) {
+    alert("Erreur reset phrase: " + (data.error || "unknown"));
+    return false;
+  }
+  return true;
+}
+
+
+async function saveSentence(i) {
+  const st = getPageState();
+  const payload = {
+    sent_idx: i,
+    new_sentence: getSentenceTextareaValue(i),
+    phrase_mode: st.phraseMode,
+    enabled_families: st.enabledFamilies,
+    selected_keys: collectSelectedKeys(),
+    abbrev_choices: collectAbbrevChoices()
+  };
+
+  const resp = await fetch("{{ url_for('patient_sentence_save', num_inclusion=num_inclusion) }}", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(payload),
+  });
+
+  if (!resp.ok) {
+    let msg = "Erreur sauvegarde phrase (" + resp.status + ")";
+    try {
+      const j = await resp.json();
+      if (j && j.error) msg += " : " + j.error + " | idx=" + j.sent_idx + " after=" + j.len_after + " before=" + j.len_before;
+    } catch (e) {}
+    alert(msg);
+    return false;
+  }
+
+  const data = await resp.json();
+  if (!data.ok) {
+    alert("Erreur sauvegarde phrase: " + (data.error || "unknown"));
+    return false;
+  }
+  return true;
+}
+
+// Interception clicks Edit/Confirm/Cancel
+document.addEventListener("click", async (e) => {
+  const t = e.target;
+  if (!t) return;
+
+  const btnReset = t.closest && t.closest("button.btnResetAfter");
+  const btnEdit  = t.closest && t.closest("button.btnEditAfter");
+
+  // Edit
+  if (t.matches(".btnEditAfter")) {
+    const i = parseInt(t.getAttribute("data-sent-idx") || "-1", 10);
+    if (i < 0) return;
+
+    // Si déjà en edit => confirmation ou annulation
+    const editBox = document.getElementById("sent_after_edit_" + i);
+    if (editBox && editBox.style.display !== "none") {
+      const ok = confirm("Confirmer les modifications de cette phrase ?");
+      if (ok) {
+          // Récupère le texte saisi AVANT de quitter le mode edit
+          const ta = document.getElementById("sent_after_textarea_" + i);
+          const newText = ta ? ta.value : "";
+
+          const saved = await saveSentence(i);
+          if (saved) {
+            // 1) Optimistic UI : met à jour immédiatement la vue "Après"
+            const v = document.getElementById("sent_after_view_" + i);
+            if (v) v.textContent = newText; // textContent: pas de spans, mais pas de flash
+
+            // 2) Verrouille l'index pendant le refresh pour éviter un écrasement transitoire
+            lockedAfterIdx = i;
+            lockedAfterText = newText;
+            setTimeout(() => { lockedAfterIdx = null; lockedAfterText = null; }, 700);
+
+            setSentenceEditMode(i, false);
+            markSentenceNoColors(i);
+          }
+        } else {
+
+        // annuler => reset textarea depuis la vue actuelle
+        const v = document.getElementById("sent_after_view_" + i);
+        const ta = document.getElementById("sent_after_textarea_" + i);
+        if (v && ta) ta.value = v.textContent;
+        setSentenceEditMode(i, false);
+      }
+      return;
+    }
+
+    setSentenceEditMode(i, true);
+    return;
+  }
+
+    // Reset
+  if (btnReset) {
+    const raw = btnReset.getAttribute("data-sent-idx");
+    const i = Number.parseInt(raw || "-1", 10);
+    if (!Number.isFinite(i) || i < 0) {
+      alert("Reset: index phrase invalide (data-sent-idx manquant).");
+      return;
+    }
+
+    const ok = confirm("Réinitialiser cette phrase à l'état non modifié ?");
+    if (!ok) return;
+
+    const done = await resetSentence(i);
+    if (done) {
+      setSentenceEditMode(i, false);
+
+      // Réactiver couleurs / suggestions sur cette phrase
+      editedSentenceIdx.delete(i);
+      const chk = document.querySelector(".chkSentenceColor[data-sent-idx='" + i + "']");
+      if (chk) chk.checked = true;
+
+      await refreshPreview();
+
+      const v = document.getElementById("sent_after_view_" + i);
+      const ta = document.getElementById("sent_after_textarea_" + i);
+      if (v && ta) ta.value = v.textContent;
+    }
+    return;
+  }
+
+  // Cancel
+  if (t.matches(".btnCancelAfter")) {
+    const i = parseInt(t.getAttribute("data-sent-idx") || "-1", 10);
+    if (i < 0) return;
+
+    const ok = confirm("Annuler les modifications de cette phrase ?");
+    if (!ok) return;
+
+    // reset textarea depuis la vue
+    const v = document.getElementById("sent_after_view_" + i);
+    const ta = document.getElementById("sent_after_textarea_" + i);
+    if (v && ta) ta.value = v.textContent;
+
+    setSentenceEditMode(i, false);
+    return;
+  }
+
+  // Confirm
+  if (t.matches(".btnConfirmAfter")) {
+    const i = parseInt(t.getAttribute("data-sent-idx") || "-1", 10);
+    if (i < 0) return;
+
+    const ok = confirm("Confirmer les modifications de cette phrase ?");
+    if (!ok) return;
+
+    const saved = await saveSentence(i);
+    if (saved) {
+      setSentenceEditMode(i, false);
+      markSentenceNoColors(i);
+      await refreshPreview();
+    }
+    return;
+  }
+});
+
+</script>
+

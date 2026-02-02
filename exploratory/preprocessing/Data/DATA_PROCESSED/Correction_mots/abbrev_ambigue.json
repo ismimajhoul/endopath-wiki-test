@@ -1,0 +1,64 @@
+{
+  "LUS": [
+    "ligament utéro-sacré",
+    "autre (à préciser selon contexte)"
+  ],
+  "TV": [
+    "toucher vaginal",
+    "télévision"
+  ],
+  "AW": [
+    "arrêt de travail",
+    "autre (code interne / initiales / à préciser)"
+  ],
+  "CR": [
+    "compte rendu",
+    "créatinine"
+  ],
+  "dig": [
+    "digestif",
+    "digital",
+    "digestion"
+  ],
+  "SD": [
+    "sans douleur",
+    "syndrome",
+    "autre (à préciser)"
+  ],
+  "EC": [
+    "échographie",
+    "examen clinique"
+  ],
+  "tono": [
+    "tonus",
+    "tonométrie"
+  ],
+  "SU": [
+    "suivi",
+    "sans urgence",
+    "salle d'urgence"
+  ],
+  "SP": [
+  "sans particularité",
+  "symphyse pubienne",
+  "santé publique",
+  "soins palliatifs",
+  "sapeurs-pompiers",
+  "surdité de perception"
+],
+  "pro": ["profondes", "prolongées", "professionnel (selon contexte)"],
+  "SF": [
+  "sans facteur",
+  "sans fait particulier"
+],
+"GD":["gestes diagnostiques","grossesses désirées"],
+"ex": [
+  "examen",
+  "ancien / ex-",
+  "externe",
+  "autre (à préciser)"
+],"RCP": [
+  "réunion de concertation pluridisciplinaire",
+  "autre (à préciser)"
+]
+}
