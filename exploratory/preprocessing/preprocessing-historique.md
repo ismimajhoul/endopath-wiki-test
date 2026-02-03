@@ -195,16 +195,3 @@ Résultat : tu obtiens un “avant/après” **offline**, sans UI.
 > Avant l’UI Flask, les corrections reposaient sur une approche “batch” : un dictionnaire JSON de remplacements simples (token->token) appliqué via une tokenisation rudimentaire (split sur ponctuation). Cette approche permettait de corriger rapidement des fautes fréquentes mais montrait des limites (ponctuation, multi-mots, cas ambigus, absence de sélection UI). L’application Flask a ensuite été développée pour rendre le processus interactif, traçable et piloté par l’utilisateur (sélections, preview Avant/Après, abréviations ambiguës, mode phrase, reset).
 
 ---
-
-## 8) Liens (à compléter dans le Wiki)
-
-* Page suivante : “Évolutions : passage vers UI Flask + pipeline suggestions”
-* Page suivante : “Format et gouvernance des dictionnaires (source of truth, merge, blacklist, etc.)”
-
-```
-
-Si tu veux, je peux aussi te produire **la page Wiki “Évolutions”** (justification technique) qui compare proprement :
-- approche historique `preprocess_NLP.py` (batch)  
-vs  
-- approche appli Flask (sélection UI → preview JSON → rendu HTML surligné + cas multi-mots + abrév. ambiguës).
-```
