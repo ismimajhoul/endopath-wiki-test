@@ -10,21 +10,16 @@ Ce wiki regroupe la documentation **technique** et **procédurale** du projet :
 
 ---
 
-## Démarrage rapide — par où commencer
+# ENDOPATH — Wiki
 
-1. Lire la vue d’ensemble :  
-   - [Preprocessing — Sommaire](Preprocessing - Sommaire.md)
+## Démarrage rapide
+1. [Préprocessing — Sommaire](preprocessing-sommaire.md)
+2. [Préprocessing — Base de données (Création ENDOPATH)](preprocessing-base-de-donnees-creation-endopath.md)
+3. [Préprocessing — Extraction de texte](preprocessing-extraction-texte.md)
+4. [Préprocessing — Filtrage linguistique](preprocessing-filtrage-linguistique.md)
+5. [Préprocessing — Suggestions](preprocessing-suggestions.md)
+6. [Préprocessing — UI Flask](preprocessing-ui-flask.md)
 
-2. Créer la base de données :  
-   - [Preprocessing — Base de données (Création ENDOPATH)](Preprocessing - Base de données (Création ENDOPATH).md)
-
-3. Exécuter le pipeline :
-   - [Preprocessing — Extraction de texte](Preprocessing - Extraction de texte.md)
-   - [Preprocessing — Filtrage linguistique](Preprocessing - Filtrage linguistique.md)
-   - [Preprocessing — Suggestions](Preprocessing - Suggestions.md)
-
-4. Revoir / appliquer les corrections :
-   - [Preprocessing — UI Flask](Preprocessing - UI Flask.md)
 
 ---
 
