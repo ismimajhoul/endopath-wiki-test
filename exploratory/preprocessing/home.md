@@ -10,8 +10,6 @@ Ce wiki regroupe la documentation **technique** et **procédurale** du projet :
 
 ---
 
-# ENDOPATH — Wiki
-
 ## Démarrage rapide
 1. [Préprocessing — Sommaire](preprocessing-sommaire.md)
 2. [Préprocessing — Base de données (Création ENDOPATH)](preprocessing-base-de-donnees-creation-endopath.md)
