@@ -11,24 +11,13 @@ Ce wiki regroupe la documentation **technique** et **procédurale** du projet :
 ---
 
 ## Démarrage rapide
+
 1. [Préprocessing — Sommaire](preprocessing-sommaire.md)
 2. [Préprocessing — Base de données (Création ENDOPATH)](preprocessing-base-de-donnees-creation-endopath.md)
 3. [Préprocessing — Extraction de texte](preprocessing-extraction-texte.md)
 4. [Préprocessing — Filtrage linguistique](preprocessing-filtrage-linguistique.md)
 5. [Préprocessing — Suggestions](preprocessing-suggestions.md)
 6. [Préprocessing — UI Flask](preprocessing-ui-flask.md)
-
-
----
-
-## Préprocessing
-
-- [Preprocessing — Sommaire](Preprocessing - Sommaire.md)  
-- [Preprocessing — Base de données (Création ENDOPATH)](Preprocessing - Base de données (Création ENDOPATH).md)  
-- [Preprocessing — Extraction de texte](Preprocessing - Extraction de texte.md)  
-- [Preprocessing — Filtrage linguistique](Preprocessing - Filtrage linguistique.md)  
-- [Preprocessing — Suggestions](Preprocessing - Suggestions.md)  
-- [Preprocessing — UI Flask](Preprocessing - UI Flask.md)  
 
 ---
 
@@ -37,7 +26,8 @@ Ce wiki regroupe la documentation **technique** et **procédurale** du projet :
 - 1 page = 1 sujet
 - Les pages décrivent un **processus**
 - Le préfixe `Preprocessing —` structure la navigation
-- Les liens sont des **liens Markdown relatifs** (repo normal)
+- Les liens sont des **liens Markdown relatifs**
+- Les noms de fichiers utilisent des **slugs ASCII** (compatibles GitHub / GitLab)
 
 ---
 
