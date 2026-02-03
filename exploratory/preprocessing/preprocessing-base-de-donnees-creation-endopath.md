@@ -1,3 +1,7 @@
+← [Retour au sommaire Préprocessing](preprocessing-sommaire.md)
+
+---
+
 # Création de la base de données ENDOPATH (XLSX → SQLite)
 
 **Objectif :** documenter le processus de construction de la base SQLite `endopath_diag.db` à partir des fichiers Excel sources du projet ENDOPATH.

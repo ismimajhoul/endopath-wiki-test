@@ -1,3 +1,7 @@
+← [Retour au sommaire Préprocessing](preprocessing-sommaire.md)
+
+---
+
 # README — UI Flask (ENDOPATH)
 
 ## 1. Objectif de l’UI
@@ -183,13 +187,29 @@ L’UI permet de gérer correctement :
 
 ## 9. Démarrage rapide
 
+> ⚠️ **ATTENTION — exécution du pipeline (action sensible et irréversible)**  
+>  
+> Le script `run_pipeline.py` sert à **générer / reconstruire** les données utilisées par l’application.  
+>  
+> - **À exécuter uniquement lors de la première utilisation** ou lors d’une **reconstruction volontaire**.  
+> - Si une base de données existe déjà, relancer `run_pipeline.py` **écrase l’état courant** et  
+>   **entraîne la perte des corrections de texte déjà appliquées**.  
+> - Cette action est **irréversible** en l’absence de sauvegarde préalable.  
+>  
+> ❗ **Anti-boulette** : ne lance jamais `run_pipeline.py` “pour tester” ou “par réflexe”.  
+> Si l’UI fonctionne, **ne touche pas au pipeline**.
+
 ```bash
-# Générer les données (pipeline)
+# CAS A — Première utilisation (initialisation UNIQUEMENT)
+# Générer les données (À FAIRE UNE SEULE FOIS)
 python run_pipeline.py
 
 # Lancer l’UI
 python app.py
-```
+
+# CAS B — Utilisation courante (base déjà initialisée)
+# ⚠️ Ne PAS relancer le pipeline
+python app.py
 
 Puis ouvrir :
 

@@ -1,3 +1,7 @@
+← [Accueil du Wiki](home.md)
+
+---
+
 # Préprocessing — Sommaire
 
 Cette section décrit l’organisation générale du **pipeline de préprocessing ENDOPATH**,

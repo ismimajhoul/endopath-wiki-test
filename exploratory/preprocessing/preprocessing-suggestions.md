@@ -1,3 +1,7 @@
+← [Retour au sommaire Préprocessing](preprocessing-sommaire.md)
+
+---
+
 ## Étape 4 — Suggestions & dictionnaires
 
 ### Fichier

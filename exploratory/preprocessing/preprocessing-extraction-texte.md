@@ -1,3 +1,7 @@
+← [Retour au sommaire Préprocessing](preprocessing-sommaire.md)
+
+---
+
 # Étape 2 — Extraction texte + vocab “dossier gynéco”
 
 **Script : `extract_text_and_vocab_from_dossier_gyneco.py`**
