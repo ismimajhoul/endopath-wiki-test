@@ -1,11 +1,4 @@
 
-1. **README.md final (unique, générique projet)** → **fourni en un seul bloc Markdown**
-2. **Première page Wiki : “Création de la base de données”** → **fourni en un seul bloc Markdown**
-3. **Réponse à ta question : faut-il un répertoire wiki dans le repo ? (Azure DevOps)**
-
----
-
-## README.md — version unique projet (à la racine)
 
 ````markdown
 # ENDOPATH — Pipeline de préparation de données & UI Flask
@@ -105,8 +98,6 @@ app.py (UI Flask)
 
 ## 4) Documentation
 
-La **documentation détaillée** est centralisée dans le **Wiki Azure DevOps** :
-
 * Création de la base de données (XLSX → SQLite)
 * Pipeline NLP (tokens, filtrage, suggestions)
 * Dictionnaires et gouvernance métier
@@ -144,8 +135,6 @@ http://127.0.0.1:5000
 ---
 
 ## 6) Dictionnaires (gestion Git)
-
-### À versionner (source de vérité)
 
 * `Data/DATA_PROCESSED/Correction_mots/dictionnaire_correction.json`
 * `Data/DATA_PROCESSED/Correction_mots/abbrev_sure_merged.json`
