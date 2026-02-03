@@ -11,13 +11,13 @@ Ce wiki regroupe la documentation **technique** et **procédurale** du projet :
 ---
 
 ## Démarrage rapide
-
 1. [Préprocessing — Sommaire](preprocessing-sommaire.md)
-2. [Préprocessing — Base de données (Création ENDOPATH)](preprocessing-base-de-donnees-creation-endopath.md)
-3. [Préprocessing — Extraction de texte](preprocessing-extraction-texte.md)
-4. [Préprocessing — Filtrage linguistique](preprocessing-filtrage-linguistique.md)
-5. [Préprocessing — Suggestions](preprocessing-suggestions.md)
-6. [Préprocessing — UI Flask](preprocessing-ui-flask.md)
+2. [Préprocessing — Historique (ancienne approche Nicolai)](preprocessing-historique.md)
+3. [Préprocessing — Base de données (Création ENDOPATH)](preprocessing-base-de-donnees-creation-endopath.md)
+4. [Préprocessing — Extraction de texte](preprocessing-extraction-texte.md)
+5. [Préprocessing — Filtrage linguistique](preprocessing-filtrage-linguistique.md)
+6. [Préprocessing — Suggestions](preprocessing-suggestions.md)
+7. [Préprocessing — UI Flask](preprocessing-ui-flask.md)
 
 ---
 
