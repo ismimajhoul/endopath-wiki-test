@@ -1,8 +1,8 @@
-← [Retour au sommaire Préprocessing](preprocessing-sommaire.md)
+← [Accueil du Wiki](home.md) / [Préprocessing — Sommaire](preprocessing-sommaire.md)
 
 ---
 
-# README — UI Flask (ENDOPATH)
+# UI Flask (ENDOPATH)
 
 ## 1. Objectif de l’UI
 
