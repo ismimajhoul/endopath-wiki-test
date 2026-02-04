@@ -1,4 +1,7 @@
-← [Préprocessing — Sommaire](preprocessing-sommaire.md)
+← [Accueil du Wiki](home.md) / [Préprocessing — Sommaire](preprocessing-sommaire.md)
+
+---
+
 
 ---
 
