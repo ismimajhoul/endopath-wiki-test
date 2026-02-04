@@ -3,15 +3,7 @@
 ---
 
 # Préprocessing — Sommaire
-...
 
-
----
-
-
----
-
-# Préprocessing — Sommaire
 
 Cette section décrit l’organisation générale du **pipeline de préprocessing ENDOPATH**,
 depuis la création de la base de données jusqu’à la validation via l’UI.
