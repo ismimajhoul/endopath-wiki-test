@@ -14,6 +14,7 @@ depuis une machine vierge jusqu’à un pipeline prêt à être exécuté.
 Obtenir un environnement fonctionnel permettant de :
 
 - exécuter le pipeline de préprocessing ENDOPATH (`run_pipeline.py`)
+- générer et exploiter une base de données SQLite
 - lancer l’interface web Flask (`app.py`)
 
 ---
@@ -33,7 +34,7 @@ Obtenir un environnement fonctionnel permettant de :
 ### 2.1 Version recommandée
 
 - **Python ≥ 3.10**
-- Validé : 3.10, 3.11, 3.12  
+- Validé : 3.10, 3.11, 3.12
 - ⚠️ Éviter Python 3.7 / 3.8 (scripts anciens, conflits de dépendances)
 
 ### 2.2 Vérification
@@ -43,9 +44,54 @@ Vérifier la version installée avec la commande :
 
 ---
 
-## 3) Dépendances Python
+## 3) Base de données SQLite
 
-### 3.1 Dépendances principales
+### 3.1 Principe
+
+ENDOPATH repose sur une **base de données SQLite locale** qui contient :
+
+- les données médicales prétraitées
+- les diagnostics et annotations
+- les liens entre textes, tokens et suggestions
+
+La base est :
+
+- créée automatiquement par le pipeline
+- stockée sous forme d’un fichier unique
+- utilisée en lecture par l’interface web Flask
+
+---
+
+### 3.2 Prérequis SQLite
+
+Aucune installation spécifique de serveur n’est requise.
+
+- SQLite est **embarqué nativement avec Python**
+- le module `sqlite3` fait partie de la bibliothèque standard Python
+
+👉 **Aucune dépendance Python supplémentaire n’est nécessaire** pour SQLite.
+
+---
+
+### 3.3 Fichier de base de données
+
+À l’issue de l’exécution du pipeline, le fichier suivant est créé ou mis à jour :
+
+- `endopath_diag.db`
+
+Ce fichier est :
+
+- généré dans le répertoire de preprocessing
+- indispensable au fonctionnement de l’interface Flask
+- à conserver entre les exécutions de l’UI
+
+⚠️ Supprimer ce fichier implique de **relancer le pipeline complet**.
+
+---
+
+## 4) Dépendances Python
+
+### 4.1 Dépendances principales
 
 Installer les librairies nécessaires :
 
@@ -55,7 +101,7 @@ Installer les librairies nécessaires :
 
 ---
 
-### 3.2 Modèle SpaCy (français)
+### 4.2 Modèle SpaCy (français)
 
 Obligatoire pour l’étape de filtrage linguistique :
 
@@ -63,7 +109,7 @@ Obligatoire pour l’étape de filtrage linguistique :
 
 ---
 
-## 4) Arborescence attendue
+## 5) Arborescence attendue
 
 Avant exécution, vérifier la présence de l’arborescence suivante :
 
@@ -73,14 +119,15 @@ Avant exécution, vérifier la présence de l’arborescence suivante :
       - fichiers `*.xlsx`
       - fichiers `PASSWORD_*.txt`
     - DATA_PROCESSED/
+  - endopath_diag.db (après exécution du pipeline)
   - run_pipeline.py
   - app.py
 
 ---
 
-## 5) Données sources (obligatoire)
+## 6) Données sources (obligatoire)
 
-### 5.1 Fichiers XLSX requis (exemples)
+### 6.1 Fichiers XLSX requis (exemples)
 
 Dans le dossier `Data/DATA_RAW/` :
 
@@ -91,7 +138,7 @@ Dans le dossier `Data/DATA_RAW/` :
 
 ---
 
-### 5.2 Fichiers de mots de passe
+### 6.2 Fichiers de mots de passe
 
 Si certains fichiers XLSX sont chiffrés :
 
@@ -100,16 +147,23 @@ Si certains fichiers XLSX sont chiffrés :
 
 ---
 
-## 6) Lancement de l’installation
+## 7) Lancement de l’installation
 
-Lancer le pipeline avec la commande :  
+Lancer le pipeline de préprocessing :  
 `python run_pipeline.py`
+
+Cette étape :
+
+- crée la base SQLite
+- génère les CSV intermédiaires
+- prépare les données pour l’interface UI
 
 ---
 
-## 7) Vérification de l’installation
+## 8) Vérification de l’installation
 
-Afficher l’aide du pipeline :  
+Vérifier que le pipeline est opérationnel :  
 `python run_pipeline.py --help`
 
-Si l’aide s’affiche, alors **l’environnement est correctement installé** ✅
+Si l’aide s’affiche et que le fichier `endopath_diag.db` est présent,  
+alors **l’environnement est correctement installé** ✅
