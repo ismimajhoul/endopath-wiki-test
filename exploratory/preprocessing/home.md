@@ -11,6 +11,7 @@ Ce wiki regroupe la documentation **technique** et **procédurale** du projet :
 ---
 
 ## Démarrage rapide
+
 1. [Préprocessing — Sommaire](preprocessing-sommaire.md)
 2. [Préprocessing — Historique (ancienne approche Nicolai)](preprocessing-historique.md)
 3. [Préprocessing — Base de données (Création ENDOPATH)](preprocessing-base-de-donnees-creation-endopath.md)
@@ -18,6 +19,15 @@ Ce wiki regroupe la documentation **technique** et **procédurale** du projet :
 5. [Préprocessing — Filtrage linguistique](preprocessing-filtrage-linguistique.md)
 6. [Préprocessing — Suggestions](preprocessing-suggestions.md)
 7. [Préprocessing — UI Flask](preprocessing-ui-flask.md)
+8. [Synthèse & Benchmark](synthese-benchmark.md)
+
+---
+
+## Annexes
+
+- [Gouvernance des dictionnaires](annexe-gouvernance-dictionnaires.md)
+- [Choix techniques & contraintes (RGPD, données cliniques)](annexe-choix-techniques-contraintes.md)
+- [Références & liens utiles](annexe-references-liens.md)
 
 ---
 
