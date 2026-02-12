@@ -199,7 +199,6 @@ L’UI permet de gérer correctement :
 > ❗ **Anti-boulette** : ne lance jamais `run_pipeline.py` “pour tester” ou “par réflexe”.  
 > Si l’UI fonctionne, **ne touche pas au pipeline**.
 
-```bash
 # CAS A — Première utilisation (initialisation UNIQUEMENT)
 # Générer les données (À FAIRE UNE SEULE FOIS)
 python run_pipeline.py
@@ -212,8 +211,6 @@ python app.py
 python app.py
 
 Puis ouvrir :
-
-```
 http://127.0.0.1:5000
-```
+
 
